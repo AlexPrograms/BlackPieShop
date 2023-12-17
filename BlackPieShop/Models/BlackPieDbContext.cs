@@ -4,9 +4,11 @@ namespace BlackPieShop.Models
 {
     public class BlackPieDbContext : DbContext
     {
-        public BlackPieDbContext(DbContextOptions<BlackPieDbContext> options) : base(options)
+        public BlackPieDbContext()
         {
-            
+        }
+        public BlackPieDbContext(DbContextOptions<BlackPieDbContext> options) : base(options)
+        {           
         }
 
         public DbSet<Category> Categories { get; set; }
