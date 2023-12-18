@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace BlackPieShop.Models
 {
-    public class BlackPieDbContext : DbContext
+    public class BlackPieDbContext : IdentityDbContext
     {
         public BlackPieDbContext()
         {
