@@ -3,10 +3,10 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Bethany's Pie Shop</title>
+    <title>Black Pie Shop</title>
     <link href='https://fonts.googleapis.com/css?family=Work+Sans' rel='stylesheet' type='text/css'>
     <script src="~/lib/jquery/jquery.js"></script>
-    <script src="~/lib/bootstrap/js/bootstrap.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.js"></script>
     <link href="~/css/site.css" rel="stylesheet" />
     <base href="/" />
 </head>
@@ -14,11 +14,11 @@
     <div class="container">
         <header>
             <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-primary"
-                 aria-label="Bethany's Pie Shop navigation header">
+                 aria-label="Black Pie Shop navigation header">
                 <div class="container-xl">
                     <a class="navbar-brand" asp-controller="Home" asp-action="Index">
-                        <img src="images/bethanys-pie-shop-logo_horiz-white.png" width="151" height="47" class="d-inline-block align-top mb-2 mt-1"
-                             alt="Bethany's Pie Shop Logo">
+                        <img src="images/blackPieShop.png" width="151" height="47" class="d-inline-block align-top mb-2 mt-1"
+                             alt="Black Pie Shop Logo">
                     </a>
 
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
@@ -30,11 +30,13 @@
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
                                 <a asp-controller="Home" asp-action="Index" class="nav-link">Home</a>
-                            </li>
+                            </li>                         
+                            <vc:category-menu></vc:category-menu>
                             <li class="nav-item">
-                                <a asp-controller="Pie" asp-action="List" class="nav-link">Pies</a>
+                                <a asp-controller="Contact" asp-action="Index" class="nav-link">Contact</a>
                             </li>
                         </ul>
+                        <vc:shopping-cart-summary></vc:shopping-cart-summary>
                     </div>
                 </div>
             </nav>
