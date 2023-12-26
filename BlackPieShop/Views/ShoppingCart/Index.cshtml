@@ -21,6 +21,12 @@
                                 <h6>@line.Pie.ShortDescription</h6>
                                 <h2>@line.Pie.Price.ToString("c")</h2>
                             </div>
+                            <div>
+                                <form asp-controller="ShoppingCart" asp-action="RemoveFromShoppingCart" method="post">
+                                    <input type="hidden" name="pieId" value="@line.Pie.PieId" />
+                                    <button type="submit" class="btn btn-secondary">Remove</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>

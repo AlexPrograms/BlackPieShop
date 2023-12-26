@@ -1,8 +1,10 @@
 ﻿using BlackPieShop.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlackPieShop.Controllers
 {
+	[Authorize]
 	public class OrderController : Controller
 	{
 		private readonly IOrderRepository _orderRepository;

@@ -2,11 +2,16 @@ using BlackPieShop.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using System.Globalization;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("BlackPieDbContextConnection") ?? throw new InvalidOperationException("Connection string 'BlackPieDbContextConnection' not found.");
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews()
+    .AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+});
 builder.Services.AddRazorPages();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IPieRepository, PieRepository>();
@@ -21,14 +26,19 @@ builder.Services.AddDbContext<BlackPieDbContext>(options => {
         builder.Configuration["ConnectionStrings:BlackPieDbContextConnection"]);
     });
 
+builder.Services.AddServerSideBlazor();
+
 builder.Services.AddDefaultIdentity<IdentityUser>()
     .AddEntityFrameworkStores<BlackPieDbContext>();
+
+//builder.Services.AddControllers();
 
 var app = builder.Build();
 
 app.UseStaticFiles();
 app.UseSession();
 app.UseAuthentication();
+app.UseAuthorization();
 
 app.UseRequestLocalization(new RequestLocalizationOptions
 {
@@ -44,7 +54,8 @@ if (app.Environment.IsDevelopment())
 
 app.MapDefaultControllerRoute();
 app.MapRazorPages();
-
+app.MapBlazorHub();
+app.MapFallbackToPage("/app/{*catchall}", "/App/Index");
 
 DbInitializer.Seed(app);
 app.Run();
